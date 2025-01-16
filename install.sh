@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
-install_dir=$HOME/.local/share/kaomojis
+install_db=$HOME/.local/share/kaomojis
+install_desktop=$HOME/.local/share/applications
+install_bin=$HOME/.local/bin/
 
 json2tsv() {
     json_file=./emoticon_kaomoji_dataset/emoticon_dict.json
@@ -17,6 +19,14 @@ json2tsv() {
 }
 
 
+# translate kaomoji db from json to tsv,
+# then install it to ~/.local/share/kaomojis/
 json2tsv &&
-    mkdir -p "$install_dir" &&
-    cp kaomoji.tsv "$install_dir"
+    mkdir -p "$install_db" &&
+    cp kaomoji.tsv "$install_db"
+
+# install kaokao.desktop
+cp ./kaokao.desktop "$install_desktop"
+
+# install kaokao.sh
+cp ./kaokao.sh "$install_bin"
