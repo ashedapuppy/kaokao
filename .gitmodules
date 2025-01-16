@@ -1,0 +1,3 @@
+[submodule "emoticon_kaomoji_dataset"]
+	path = emoticon_kaomoji_dataset
+	url = https://github.com/ekohrt/emoticon_kaomoji_dataset.git
