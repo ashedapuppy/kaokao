@@ -12,4 +12,4 @@ jq -r 'to_entries[] |
   [
     .key,
     (.value.original_tags + .value.new_tags | unique | join(", "))
-  ] | @tsv' "$json_file"
+  ] | @tsv' "$json_file" > kaomoji.tsv
