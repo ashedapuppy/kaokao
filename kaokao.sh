@@ -10,3 +10,5 @@ else
     echo "kaomoji.tsv not found, try running install.sh"
     exit 1
 fi
+
+# TODO: check if running X11 or wayland, use rofi or wofi
