@@ -18,15 +18,17 @@ json2tsv() {
   ] | @tsv' "$json_file" > kaomoji.tsv
 }
 
+git submodule update --init --recursive
 
-# translate kaomoji db from json to tsv,
-# then install it to ~/.local/share/kaomojis/
+echo "installing kaomojis db to $install_db"
 json2tsv &&
     mkdir -p "$install_db" &&
     cp kaomoji.tsv "$install_db"
 
-# install kaokao.desktop
-cp ./kaokao.desktop "$install_desktop"
+echo "installing kaokao.desktop to $install_desktop"
+mkdir -p "$install_desktop" && cp ./kaokao.desktop "$install_desktop"
 
-# install kaokao.sh
-cp ./kaokao.sh "$install_bin"
+echo "installing kaokao.sh to $install_bin"
+mkdir -p "$install_bin" && cp ./kaokao.sh "$install_bin"
+
+echo "done"
