@@ -3,20 +3,18 @@
 # simple script - allow selecting from kaomoji.tsv
 # and copies selection to system cliboard
 kaomojis=$HOME/.local/share/kaomojis/kaomoji.tsv
-rofi=""
 
-if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-    rofi="wofi --dmenu -i"
-else
-    rofi="rofi -dmenu -i"
-fi
+exists () {
+  type "$1" >/dev/null 2>/dev/null
+}
 
 if [ -e $kaomojis ]; then
-    $rofi < "$kaomojis" | cut -f 1 | wl-copy
+  if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    wofi --dmenu -i <"$kaomojis" | cut -f 1 | wl-copy
+  else
+    exists splatmoji && splatmoji --disable-emoji-db --disable-emoticon-db type "$kaomojis"
+  fi
 else
-    echo "kaomoji.tsv not found, try running install.sh"
-    exit 1
+  echo "kaomoji.tsv not found, try running install.sh"
+  exit 1
 fi
-
-
-# TODO: check if running X11 or wayland, use rofi or wofi
