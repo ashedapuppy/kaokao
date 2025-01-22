@@ -9,11 +9,16 @@ exists () {
 }
 
 if [ -e $kaomojis ]; then
+  # if on wayland (my computer) -- use wofi and copy to clipboard
   if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
     wofi --dmenu -i <"$kaomojis" | cut -f 1 | wl-copy
+
+  # otherwise, use splatmoji and type
   else
     exists splatmoji && splatmoji --disable-emoji-db --disable-emoticon-db type "$kaomojis"
   fi
+
+# someone forgot to run the install script
 else
   echo "kaomoji.tsv not found, try running install.sh"
   exit 1
