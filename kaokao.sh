@@ -15,7 +15,7 @@ if [ -e $kaomojis ]; then
 
   # otherwise, use splatmoji and type
   else
-    exists splatmoji && splatmoji --disable-emoji-db --disable-emoticon-db type "$kaomojis"
+    exists splatmoji && splatmoji --disable-emoji-db --disable-emoticon-db copypaste "$kaomojis"
   fi
 
 # someone forgot to run the install script
